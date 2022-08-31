@@ -32,8 +32,20 @@ def init_options():
     psb = permutations(range(COLORS), SIZE)
     return psb
 
-def sub_option(options, move):
-    pass 
+def valid_option(option, moves):
+    pass
+
+def sub_option(psb, moves):
+    # psb = list(options)  # copy the current options list
+    
+    cpsb = list()  # create empty list for new reduced options.
+
+    for option in psb:  # sub the impasible options
+        if valid_option(option, moves):  # check if the current option is valid
+            cpsb.append(option)  # if so, append it.
+
+    return cpsb  # := current possible board.
+    
 
 
 class Board():
@@ -44,7 +56,7 @@ class Board():
 
     def __init__(self):
         self.moves = []
-        self.option = init_options()
+        self.option = list(init_options())
 
     def __str__(self):
         pass
