@@ -1,6 +1,8 @@
 #!/usr/bin/env python3.8
 
 from itertools import permutations
+from colorama import Fore
+from colorama import Style
 
 
 '''
@@ -16,6 +18,8 @@ The game has 6 available colors:
 
 SIZE = 4  # number of guessing colors.
 COLORS = 6  # number of possible colors.
+PRINTABLE_CHAR = 'X'
+LEGAL_COLORS = {'b':Fore.BLUE, 'l':Fore.LIGHTBLUE_EX, 'g':Fore.GREEN, 'o':Fore.LIGHTYELLOW_EX, 'r':Fore.RED, 'y':Fore.YELLOW}
 
 class GameMove():
 
@@ -26,6 +30,12 @@ class GameMove():
     def __init__(self, guess, result):
         self.guess = guess
         self.result = result
+
+    def __str__(self):
+        for opt in self.guess:
+            if opt in LEGAL_COLORS:
+                pass
+        pass
 
 
 def init_options():
@@ -59,6 +69,10 @@ class Board():
         self.option = list(init_options())
 
     def __str__(self):
+        string = ''
+        for move in self.moves[::-1]:
+            string += str(move)
+
         pass
 
     def __repr__(self):
@@ -68,6 +82,9 @@ class Board():
         '''
         Add the last action result.
         '''
+
+    def add_move(self, gm):
+        self.moves.append(gm)
 
     def calculate_solution(self):
         '''
